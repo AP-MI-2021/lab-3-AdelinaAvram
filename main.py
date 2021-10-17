@@ -6,7 +6,7 @@ def sorted_asc (l):
     '''
 
     for i in range(1, len(l)):
-        if l[i]<=l[i-1]:
+        if l[i]<l[i-1]:
             return False
     return True
 
@@ -34,6 +34,7 @@ def test_get_longest_sorted_asc():
     assert get_longest_sorted_asc([1, 19, 15, 14, 2, 3, 9, 7]) == [2, 3, 9]
     assert get_longest_sorted_asc ([9, 8, 7, 6]) == [9]
     assert get_longest_sorted_asc ([1, 13, 12, 15, 16, 20, 21]) == [12, 15, 16, 20, 21]
+    assert get_longest_sorted_asc ([11, 22, 22, 20, 9]) == [11, 22, 22]
 
 def div_count (n):
     '''
