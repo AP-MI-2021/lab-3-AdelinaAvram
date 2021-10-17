@@ -16,6 +16,7 @@ def test_sorted_asc ():
     assert sorted_asc ([1, 10, 9, 11, 12]) is False
     assert sorted_asc ([11, 15, 20, 9]) is False
     assert sorted_asc ([15, 21, 30, 37]) is True
+    assert sorted_asc ([1, 2, 2, 3, 4, 7, 7, 9]) is True
 
 def get_longest_sorted_asc(l):
     '''
@@ -155,7 +156,7 @@ def printMenu ():
     print ("1. Citire lista")
     print ("2. Afisare cea mai lunga subsecventa de nr. ordonate crescator ")
     print ("3. Afisare cea mai lunga subsecventa ale carei elemente au acelasi nr de divizori")
-    print ("4. Afisarea cea mai lunga subsecventa ale carei elemente au toate cifrele prime")
+    print ("4. Afisare cea mai lunga subsecventa ale carei elemente au toate cifrele prime")
     print ("x. Iesire")
 
 def main():
