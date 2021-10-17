@@ -94,10 +94,67 @@ def test_get_longest_same_div_count ():
     assert get_longest_same_div_count([1, 3, 6, 27, 35, 125, 36, 100, 196, 2]) == [6, 27, 35, 125]
     assert get_longest_same_div_count ([3, 5, 7, 4, 9, 25, 121]) == [4, 9, 25, 121]
 
+def prime_digit_number (n):
+    '''
+    determina daca un numar are sau nu toate cifrele prime
+    :param n: nr natural
+    :return: True, daca toate cifrele numarului sunt prime si False, in caz contrar
+    '''
+    while n>0:
+        cif = n%10
+        if not (cif==2 or cif==3 or cif==5 or cif==7):
+            return False
+        n=n//10
+    return True
+
+def test_prime_digit_number ():
+    assert prime_digit_number (237) is True
+    assert prime_digit_number (1115) is False
+    assert prime_digit_number (2) is True
+    assert prime_digit_number (7893) is False
+    assert prime_digit_number (573) is True
+
+def prime_digits (l):
+    '''
+    determina daca toate elementele unei liste au sau nu cifrele prime
+    :param l: lista de nr intregi
+    :return: True, daca toate elementele au cifrele prime si False, in caz contrar
+    '''
+    for x in l:
+        if not (prime_digit_number(x)):
+            return False
+    return True
+
+def test_prime_digits ():
+    assert prime_digits ([237, 1115]) is False
+    assert prime_digits ([2, 237, 7753]) is True
+    assert prime_digits ([23, 37, 55]) is True
+    assert prime_digits ([36, 974, 225]) is False
+
+def get_longest_prime_digits (l):
+    '''
+    determina cea mai lunga secventa de elemente cu cifre prime a unei liste
+    :param l: lista de nr intregi
+    :return: cea mai lunga secventa de elemente cu cifre prime a unei liste
+    '''
+    subsecventaMax = []
+    for i in range (len(l)):
+        for j in range (i, len(l)):
+            if prime_digits (l[i:j+1]) and len(l[i:j+1]) > len(subsecventaMax):
+                subsecventaMax = l[i:j+1]
+    return subsecventaMax
+
+def test_get_longest_prime_digits ():
+    assert get_longest_prime_digits([1, 33, 56, 77, 23, 253, 8, 73, 25]) == [77, 23, 253]
+    assert get_longest_prime_digits([12, 44, 67, 21]) == []
+    assert get_longest_prime_digits ([257, 22273, 22]) == [257, 22273, 22]
+    assert get_longest_prime_digits ([1, 2, 3, 4, 5, 6, 7, 77, 53]) == [7, 77, 53]
+
 def printMenu ():
     print ("1. Citire lista")
     print ("2. Afisare cea mai lunga subsecventa de nr. ordonate crescator ")
     print ("3. Afisare cea mai lunga subsecventa ale carei elemente au acelasi nr de divizori")
+    print ("4. Afisarea cea mai lunga subsecventa ale carei elemente au toate cifrele prime")
     print ("x. Iesire")
 
 def main():
@@ -106,6 +163,9 @@ def main():
     test_div_count()
     test_same_div_count()
     test_get_longest_same_div_count()
+    test_prime_digit_number()
+    test_prime_digits()
+    test_get_longest_prime_digits()
     l = []
     while True:
         printMenu()
@@ -119,6 +179,8 @@ def main():
             print(get_longest_sorted_asc(l))
         elif optiune == "3":
             print(get_longest_same_div_count(l))
+        elif optiune == "4":
+            print(get_longest_prime_digits(l))
         elif optiune == "x":
             break
         else:
